@@ -1,0 +1,468 @@
+:root {
+            --main-blue: #3b82f6;
+            --light-blue: #60a5fa;
+            --dark-blue: #2563eb;
+            --sky-blue: #0ea5e9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #dbeafe 0%, #f0f9ff 50%, #e0f2fe 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+        
+        /* ============ HEADER STYLING ============ */
+        .dashboard-header {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            padding: 20px 40px;
+            box-shadow: 0 4px 20px rgba(59, 130, 246, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: slideDown 0.6s ease-out;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .header-left h4 {
+            color: white;
+            margin: 0;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+        
+        .btn-logout:hover {
+            background: white;
+            color: var(--main-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+        
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            animation: fadeInRight 0.8s ease-out;
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .profile-text h6 {
+            color: white;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .profile-text small {
+            color: #bfdbfe;
+            font-size: 0.85rem;
+        }
+        
+        .profile-avatar {
+            width: 45px;
+            height: 45px;
+            background: white;
+            color: var(--main-blue);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* ============ MAIN CONTENT ============ */
+        .dashboard-content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ============ HERO MESSAGE ============ */
+        .hero-message {
+            background: linear-gradient(135deg, #3b82f6, #2563eb, #1d4ed8);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.4);
+            position: relative;
+            overflow: hidden;
+            animation: scaleIn 0.6s ease-out 0.2s backwards;
+        }
+        
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .hero-message::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        .hero-message h5 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+            color: #e0f2fe;
+        }
+        
+        .btn-sampaikan {
+            background: white;
+            color: var(--main-blue);
+            border: none;
+            font-weight: 700;
+            padding: 14px 35px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+            position: relative;
+            z-index: 1;
+            font-size: 1.05rem;
+        }
+        
+        .btn-sampaikan:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.4);
+            background: #f0f9ff;
+        }
+        
+        /* ============ STATUS CARDS ============ */
+        .status-card {
+            background: white;
+            border-radius: 16px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            animation: scaleIn 0.5s ease-out backwards;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .status-card:nth-child(1) { animation-delay: 0.3s; }
+        .status-card:nth-child(2) { animation-delay: 0.4s; }
+        .status-card:nth-child(3) { animation-delay: 0.5s; }
+        .status-card:nth-child(4) { animation-delay: 0.6s; }
+        
+        .status-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--main-blue), var(--light-blue));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .status-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .status-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.25);
+            border-color: var(--light-blue);
+        }
+        
+        .status-card .card-body {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+        }
+        
+        .status-card small {
+            color: #64748b;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .status-card h4 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .status-icon {
+            font-size: 2.5rem;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+        }
+        
+        .status-card:hover .status-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+        
+        /* Card Colors */
+        .card-primary { border-left: 5px solid #3b82f6; }
+        .card-warning { border-left: 5px solid #f59e0b; }
+        .card-info { border-left: 5px solid #0ea5e9; }
+        .card-success { border-left: 5px solid #10b981; }
+        
+        /* ============ ASPIRASI LIST ============ */
+        .aspirasi-list-container {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            animation: fadeInUp 0.7s ease-out 0.7s backwards;
+        }
+        
+        .aspirasi-list-container h5 {
+            color: var(--main-blue);
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .form-select {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+        
+        .form-select:focus {
+            border-color: var(--light-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+        
+        .empty-state h6 {
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 10px;
+        }
+        
+        /* ============ MODAL STYLING ============ */
+        .modal-content {
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-header {
+            background: linear-gradient(135deg, var(--main-blue), var(--dark-blue));
+            color: white;
+            border-radius: 20px 20px 0 0;
+            padding: 25px 30px;
+            border: none;
+        }
+        
+        .modal-header .modal-title {
+            font-weight: 700;
+            font-size: 1.4rem;
+        }
+        
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+            opacity: 1;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+        
+        .form-control, .form-select {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--light-blue);
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+            outline: none;
+        }
+        
+        .form-text {
+            color: #64748b;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+        
+        .modal-footer {
+            padding: 20px 30px;
+            border: none;
+        }
+        
+        .modal-footer .btn {
+            padding: 10px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+        
+        /* ============ ALERT STYLING ============ */
+        .alert {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: slideInDown 0.5s ease-out;
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .dashboard-header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            
+            .header-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .profile-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .dashboard-content {
+                padding: 20px;
+            }
+            
+            .hero-message {
+                padding: 25px;
+            }
+            
+            .hero-message h5 {
+                font-size: 1.5rem;
+            }
+            
+            .status-card h4 {
+                font-size: 2rem;
+            }
+        }
