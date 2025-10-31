@@ -6,7 +6,6 @@ include "../config/database.php";
 checkRole('admin'); 
 
 $admin_id_session = isset($_SESSION['id_user']) ? intval($_SESSION['id_user']) : null; 
-$admin_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Admin Sekolah';
 $aspirasi_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($aspirasi_id == 0 || !$admin_id_session) {
@@ -79,15 +78,6 @@ $no_edit = $aspirasi['status'] == 'Selesai'
             </h4>
         </div>
         
-        <div class="profile-info">
-            <div class="profile-text text-end">
-                <h6 class="mb-0"><?= htmlspecialchars($admin_name) ?></h6>
-                <small class="text-muted">Admin</small>
-            </div>
-            <div class="profile-avatar">
-                <?= strtoupper(substr($admin_name, 0, 1)) ?>
-            </div>
-        </div>
     </header>
 
     <div class="dashboard-content">

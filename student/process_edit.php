@@ -1,12 +1,9 @@
 <?php
-// student/process_edit.php
-// PERINGATAN: KODE INI TIDAK AMAN DAN RENTAN TERHADAP SERANGAN SQL INJECTION.
 session_start();
 include "../middleware/auth_check.php";
 include "../config/database.php"; 
 checkRole('student'); 
 
-// Pastikan koneksi tersedia
 if (!isset($conn) || $conn->connect_error) {
     $_SESSION['error'] = "Koneksi database gagal.";
     header("Location: dashboard.php");
@@ -25,7 +22,6 @@ if ($aspirasi_id == 0 || $student_id_session == 0 || empty($title) || empty($con
     exit();
 }
 $success = false;
-
 $sql_check = "SELECT status FROM aspirations WHERE aspiration_id = '$aspirasi_id' AND student_id = '$student_id_session'";
 $result_check = $conn->query($sql_check);
 
@@ -48,9 +44,7 @@ if ($result_check) {
 } else {
     $_SESSION['error'] = "Gagal memeriksa status aspirasi. Error SQL: " . $conn->error;
 }
-
 $conn->close();
-
-header("Location: detail_aspirasi.php?id=" . $aspirasi_id);
+header("Location: dashboard.php");
 exit();
 ?>

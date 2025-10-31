@@ -4,13 +4,14 @@ include "../middleware/auth_check.php";
 include "../config/database.php"; 
 checkRole('student'); 
 
-// Pastikan koneksi tersedia
 if (!isset($conn) || $conn->connect_error) {
     $_SESSION['error'] = "Koneksi database gagal.";
     header("Location: dashboard.php");
     exit();
 }
 
+$student_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : '';
+$student_class = isset($_SESSION['class']) ? $_SESSION['class'] : '';
 $student_id_session = isset($_SESSION['id_user']) ? intval($_SESSION['id_user']) : null; 
 $aspirasi_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -105,19 +106,7 @@ $is_editable = ($aspirasi['status'] == 'Pending');
             display: flex;
             align-items: center;
         }
-        .profile-avatar {
-            width: 40px;
-            height: 40px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-left: 15px;
-        }
+        
     </style>
 </head>
 <body>
@@ -132,15 +121,6 @@ $is_editable = ($aspirasi['status'] == 'Pending');
             </h4>
         </div>
         
-        <div class="profile-info">
-            <div class="profile-text text-end">
-                <h6 class="mb-0"><?= htmlspecialchars($student_name) ?></h6>
-                <small class="text-muted"><?= htmlspecialchars($student_class) ?></small>
-            </div>
-            <div class="profile-avatar">
-                <?= strtoupper(substr($student_name, 0, 1)) ?>
-            </div>
-        </div>
     </header>
 
     <div class="dashboard-content">

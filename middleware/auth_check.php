@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-if (!isset($_SESSION['user_type']) || !isset($_SESSION['user_nis'])) {
+if (!isset($_SESSION['user_type']) || !isset($_SESSION['id_user'])) {
     $_SESSION['error'] = "Anda harus login untuk mengakses halaman tersebut.";
     header("Location: ../auth/login.php"); 
     exit();

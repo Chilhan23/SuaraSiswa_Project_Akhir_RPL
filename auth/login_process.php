@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+
 include "../config/database.php"; 
 
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
@@ -9,60 +10,65 @@ if ($_SERVER["REQUEST_METHOD"] != "POST") {
 
 $identifier = isset($_POST['identifier']) ? trim($_POST['identifier']) : '';
 $password = isset($_POST['password']) ? $_POST['password'] : '';
-$user_type = isset($_POST['user_type']) ? $_POST['user_type'] : 'student';
 
+if (empty($identifier) || empty($password)) {
+    $_SESSION['error'] = "NIS/Username dan Password harus diisi.";
+    header("Location: login.php");
+    exit();
+}
+$conn->real_escape_string($identifier); 
 
-if ($user_type == "student") {
-    if (empty($identifier) || empty($password)) {
-        $_SESSION['error'] = "NIS dan Password harus diisi.";
-        header("Location: login.php");
-        exit();
-    }
-} else {
-    if (empty($identifier) || empty($password)) {
-        $_SESSION['error'] = "Username dan Password harus diisi.";
-        header("Location: login.php");
-        exit();
-    }
+$loggedIn = false;
+$user_data = null;
+$user_type = null;
+$sql_admin = "SELECT * FROM admins WHERE username = '$identifier' LIMIT 1";
+$result_admin = $conn->query($sql_admin);
+
+if ($result_admin && $result_admin->num_rows > 0) {
+    $user_data = $result_admin->fetch_assoc();
+    if ($password === $user_data['password']) { 
+        $loggedIn = true;
+        $user_type = 'admin';
+    } 
 }
 
+if (!$loggedIn) {
+    $sql_student = "SELECT * FROM students WHERE nis = '$identifier' OR name = '$identifier' LIMIT 1";
+    $result_student = $conn->query($sql_student);
 
-if ($user_type == 'student') {
-    $table = 'students';
-    $identifier_column = 'nis';
-} else {
-    $table = 'admins';
-    $identifier_column = 'username';
-}
-
-$sql = "SELECT * FROM $table WHERE $identifier_column = '$identifier'";
-
-$result = $conn->query($sql);
-
-if ($result && $result->num_rows > 0) {
-    $user = $result->fetch_assoc();
-        $_SESSION['user_nis'] = $user[$identifier_column];
-        $_SESSION['user_name'] = $user['name'];
-        $_SESSION['user_type'] = $user_type;
-        $_SESSION['class'] = isset($user['class']) ? $user['class'] : '';
-        if ($user_type == "student") { 
-            $_SESSION['id_user'] = $user['student_id'];
-        } else {
-           $_SESSION['id_user'] = $user['admin_id'];
+    if ($result_student && $result_student->num_rows > 0) {
+        $user_data = $result_student->fetch_assoc();
+        if (password_verify($password, $user_data['password'])) { 
+            $loggedIn = true;
+            $user_type = 'student';
         }
-        
-        
-        if ($user_type == "student") { 
-            header("Location: ../student/dashboard.php");
-        } else {
-            header("Location: ../admin/dashboard.php");
-        }
-        $conn->close();
-        exit();
-        
-} else {
-    $_SESSION['error'] = "NIS/Username tidak ditemukan.";
+    }
 }
+
+if ($loggedIn) {
+    $_SESSION['user_type'] = $user_type;
+    $_SESSION['user_name'] = $user_data['name']; 
+
+    if ($user_type == "admin") {
+        $_SESSION['id_user'] = $user_data['admin_id']; 
+        $_SESSION['user_name'] = $user_data['username']; 
+        header("Location: ../admin/dashboard.php");
+    } else {
+        $_SESSION['id_user'] = $user_data['student_id']; 
+        $_SESSION['user_identifier'] = $user_data['nis']; 
+        $_SESSION['user_name'] = $user_data['name'];
+        $_SESSION['class'] = isset($user_data['class']) ? $user_data['class'] : ''; 
+        header("Location: ../student/dashboard.php");
+    }
+    
+    exit();
+} else {
+
+    $_SESSION['error'] = "NIS/Username atau Password salah.";
+}
+
 $conn->close();
 header("Location: login.php");
 exit();
+
+?>

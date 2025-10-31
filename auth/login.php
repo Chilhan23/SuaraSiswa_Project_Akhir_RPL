@@ -45,20 +45,10 @@ unset($_SESSION['error']);
 
                         <form action="login_process.php" method="POST">
                             <div class="mb-3">
-                                <label class="form-label">Tipe Akun</label>
-                                <!-- Tambahkan ID dan event listener untuk JavaScript -->
-                                <select name="user_type" id="userType" class="form-select" required onchange="updateIdentifierInput()">
-                                    <option value="student">Siswa</option>
-                                    <option value="admin">Admin/Guru</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <!-- Tambahkan ID pada label dan input -->
-                                <label class="form-label" id="identifierLabel">
-                                    <i class="bi bi-person"></i> NIS
+                               <label class="form-label" id="identifierLabel">
+                                     <i class="bi bi-person"></i> NIS / Username
                                 </label>
-                                <input type="text" name="identifier" id="identifierInput" class="form-control" placeholder="Masukkan NIS" required>
+                                <input type="text" name="identifier" id="identifierInput" class="form-control" placeholder="Masukkan NIS atau Username" required>
                             </div>
                             
                             <div class="mb-3">
@@ -94,27 +84,5 @@ unset($_SESSION['error']);
     </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- LOGIKA JAVASCRIPT DINAMIS -->
-    <script>
-        function updateIdentifierInput() {
-            const userType = document.getElementById('userType').value;
-            const label = document.getElementById('identifierLabel');
-            const input = document.getElementById('identifierInput');
-
-            if (userType === 'student') {
-                // Konfigurasi untuk Siswa
-                label.innerHTML = '<i class="bi bi-person"></i> NIS';
-                input.placeholder = 'Masukkan Nomor Induk Siswa (NIS)';
-            } else if (userType === 'admin') {
-                // Konfigurasi untuk Admin
-                label.innerHTML = '<i class="bi bi-person"></i> Username';
-                input.placeholder = 'Masukkan Username Admin/Guru';
-            }
-        }
-        
-        // Panggil fungsi saat halaman dimuat untuk memastikan status awal sudah benar
-        document.addEventListener('DOMContentLoaded', updateIdentifierInput);
-    </script>
 </body>
 </html>

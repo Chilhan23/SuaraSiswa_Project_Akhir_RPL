@@ -91,7 +91,6 @@ $conn->close();
         <!-- Main Content -->
         <div class="main-content">
             <h1>Dashboard Admin</h1>
-            <p>Kelola aspirasi siswa dengan mudah dan efisien</p>
 
             <!-- Alert Messages -->
             <?php if ($current_success): ?>
@@ -120,9 +119,6 @@ $conn->close();
                                 <i class="bi bi-people-fill"></i>
                             </div>
                         </div>
-                        <div class="card-progress">
-                            <div class="card-progress-bar bg-primary" style="width: 100%"></div>
-                        </div>
                     </div>
                 </div>
 
@@ -136,9 +132,6 @@ $conn->close();
                             <div class="card-icon-container card-icon-review">
                                 <i class="bi bi-clock-fill"></i>
                             </div>
-                        </div>
-                        <div class="card-progress">
-                            <div class="card-progress-bar bg-warning" style="width: 50%"></div>
                         </div>
                     </div>
                 </div>
@@ -154,9 +147,6 @@ $conn->close();
                                 <i class="bi bi-check-circle-fill"></i>
                             </div>
                         </div>
-                        <div class="card-progress">
-                            <div class="card-progress-bar bg-success" style="width: 37.5%"></div>
-                        </div>
                     </div>
                 </div>
 
@@ -171,9 +161,6 @@ $conn->close();
                                 <i class="bi bi-check-circle-fill"></i>
                             </div>
                         </div>
-                        <div class="card-progress">
-                            <div class="card-progress-bar bg-success" style="width: 37.5%"></div>
-                        </div>
                     </div>
                 </div>
 
@@ -187,9 +174,6 @@ $conn->close();
                             <div class="card-icon-container card-icon-rejected">
                                 <i class="bi bi-x-circle-fill"></i>
                             </div>
-                        </div>
-                        <div class="card-progress">
-                            <div class="card-progress-bar bg-danger" style="width: 12.5%"></div>
                         </div>
                     </div>
                 </div>
